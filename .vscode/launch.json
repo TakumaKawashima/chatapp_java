@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-ChatappApplication<chatapp>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "in.tech_camp.chatapp.ChatappApplication",
+      "projectName": "chatapp",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
