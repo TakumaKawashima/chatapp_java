@@ -14,7 +14,7 @@
         <h5>新規アカウントの作成</h5>
       </div>
       <div class='account-page__inner--right user-form'>
-        <form th:action="@{/users/sign_up}" th:method="post" th:object="${UserForm}">
+        <form th:action="@{/users/sign_up}" th:method="post" th:object="${userForm}">
           <div th:if="${errorMessages}" th:each="error : ${errorMessages}">
             <div th:text="${error}"></div>
           </div>
