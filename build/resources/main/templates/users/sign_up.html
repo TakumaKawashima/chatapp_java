@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>ChatApp</title>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link rel="stylesheet" th:href="@{/css/style.css}" />
-  <link rel="stylesheet" th:href="@{/css/user.css}" />
+  <link rel="stylesheet" th:href="@{/css/users.css}" />
 </head>
 <body>
   <div class='account-page' id='account-page'>
@@ -15,7 +14,7 @@
         <h5>新規アカウントの作成</h5>
       </div>
       <div class='account-page__inner--right user-form'>
-        <form th:action="@{/register}" th:method="post" th:object="${user}">
+        <form th:action="@{/users/sign_up}" th:method="post" th:object="${UserForm}">
           <div th:if="${errorMessages}" th:each="error : ${errorMessages}">
             <div th:text="${error}"></div>
           </div>
