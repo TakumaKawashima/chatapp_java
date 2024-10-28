@@ -1,5 +1,7 @@
 package in.tech_camp.chatapp.controller;
 
+import in.tech_camp.chatapp.form.LoginForm;
+
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -62,5 +65,19 @@ public class UserController {
         return "users/sign_up";
       }
       return "redirect:/";
+    }
+
+    @GetMapping("/users/login")
+    public String loginForm(Model model){
+      model.addAttribute("loginForm", new LoginForm());
+      return "users/login";
+    }
+
+    @GetMapping("/login")
+    public String login(@RequestParam(value = "error", required = false) String error, @ModelAttribute("loginForm") LoginForm loginForm,Model model) {
+      if (error != null) {
+        model.addAttribute("loginError", "メールアドレスかパスワードが間違っています。");
+      }
+      return "users/login";
     }
 }

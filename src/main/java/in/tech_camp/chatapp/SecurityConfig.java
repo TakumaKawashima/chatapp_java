@@ -23,9 +23,17 @@ public class SecurityConfig {
     http
       .csrf(AbstractHttpConfigurer::disable)
       .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-        .requestMatchers("/css/**", "/images/**", "/", "/users/sign_up").permitAll()
+        .requestMatchers("/css/**", "/images/**", "/", "/users/sign_up","/users/login").permitAll()
         .requestMatchers(HttpMethod.POST, "/users/sign_up").permitAll()
-        .anyRequest().authenticated());
+        .anyRequest().authenticated())
+        .formLogin(login -> login
+          .loginProcessingUrl("/login")
+          .loginPage("/users/login")
+          .defaultSuccessUrl("/", true)
+          .failureUrl("/login?error")
+            .usernameParameter("email")
+            .passwordParameter("password")
+          .permitAll());
     return http.build();
   }
 }
