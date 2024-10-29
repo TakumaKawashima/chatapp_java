@@ -1,6 +1,7 @@
 package in.tech_camp.chatapp.controller;
 
 import in.tech_camp.chatapp.form.LoginForm;
+import in.tech_camp.chatapp.form.UserEditForm;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import java.util.stream.Collectors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
@@ -29,6 +31,7 @@ public class UserController {
     this.userRepository = userRepository;
     this.userService = userService;
   }
+
   @GetMapping("/users/sign_up")
   public String showSignUp(Model model) {
     model.addAttribute("userForm", new UserForm());
@@ -79,5 +82,20 @@ public class UserController {
         model.addAttribute("loginError", "メールアドレスかパスワードが間違っています。");
       }
       return "users/login";
+    }
+
+    // ユーザー編集フォームを表示
+    @GetMapping("/users/{userId}/edit")
+    public String editUserForm(@PathVariable("userId") Integer userId, Model model) {
+      UserEntity userEntity;
+      userEntity = userRepository.findById(userId);
+
+      UserEditForm userForm = new UserEditForm();
+      userForm.setId(userEntity.getId());
+      userForm.setName(userEntity.getName());
+      userForm.setEmail(userEntity.getEmail());
+
+      model.addAttribute("user", userForm);
+      return "users/edit";
     }
 }
