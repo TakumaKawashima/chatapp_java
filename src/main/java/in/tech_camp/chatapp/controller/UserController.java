@@ -98,4 +98,28 @@ public class UserController {
       model.addAttribute("user", userForm);
       return "users/edit";
     }
+
+    // ユーザー情報を更新
+    @PostMapping("/users/{userId}/edit")
+    public String editUser(@PathVariable("userId") Integer userId, @ModelAttribute("user") @Validated UserEditForm userEditForm, BindingResult result, Model model) {
+      if (result.hasErrors()) {
+        List<String> errorMessages = result.getAllErrors().stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage)
+            .collect(Collectors.toList());
+        model.addAttribute("errorMessages", errorMessages);
+        model.addAttribute("user", userEditForm);
+        return "users/edit";
+      }
+      try {
+        UserEntity userEntity = userRepository.findById(userId);
+        userEntity.setName(userEditForm.getName());
+        userEntity.setEmail(userEditForm.getEmail());
+        userRepository.update(userEntity);
+      } catch (Exception e) {
+        model.addAttribute("errorMessage", e.getMessage());
+        model.addAttribute("user", userEditForm);
+        return "users/edit";
+      }
+      return "redirect:/";
+    }
 }

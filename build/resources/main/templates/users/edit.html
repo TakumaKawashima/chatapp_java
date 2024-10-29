@@ -19,7 +19,7 @@
         <a th:href="@{/}" class='btn'>チャットページに戻る</a>
       </div>
       <div class='account-page__inner--right user-form'>
-        <form th:action="@{/users/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <form th:action="@{/users/{id}/edit(id=${user.id})}" th:object="${user}" method="post">
           <input type="hidden" th:field="*{id}"/>
           <div class='field'>
             <div class='field-label'>
