@@ -5,3 +5,9 @@ CREATE TABLE IF NOT EXISTS users (
   password  VARCHAR(512)    NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS rooms (
+  id        SERIAL          NOT NULL,
+  name      VARCHAR(128)    NOT NULL,
+  PRIMARY KEY (id)
+);
