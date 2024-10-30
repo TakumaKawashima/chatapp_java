@@ -33,7 +33,10 @@ public class SecurityConfig {
           .failureUrl("/login?error")
             .usernameParameter("email")
             .passwordParameter("password")
-          .permitAll());
+            .permitAll())
+        .logout(logout -> logout
+          .logoutSuccessUrl("/loginForm"));
+
     return http.build();
   }
 }
