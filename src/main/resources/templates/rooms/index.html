@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatApp</title>
+  <link rel="stylesheet" th:href="@{/css/messages.css}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/rooms.css}" />
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="side-bar">
+      <div th:insert="~{side_bar :: side_bar}"></div>
+    </div>
+  </div>
+
+</body>
+</html>
