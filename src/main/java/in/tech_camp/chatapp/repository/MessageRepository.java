@@ -24,7 +24,7 @@ public interface MessageRepository {
       @Results(value = {
       @Result(property = "createdAt", column = "created_at"),
       @Result(property = "user", column = "user_id",
-              one = @One(select = "in.techcamp.chatapp_java.UserRepository.findById", fetchType = FetchType.LAZY))
+              one = @One(select = "in.tech_camp.chatapp.repository.UserRepository.findById", fetchType = FetchType.LAZY))
   })
   List<MessageEntity> findByRoomId(Integer roomId);
 
